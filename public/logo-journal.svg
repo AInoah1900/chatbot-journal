@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <circle cx="100" cy="100" r="90" fill="#005293" />
+  <circle cx="100" cy="100" r="75" fill="white" />
+  <circle cx="100" cy="100" r="65" fill="#005293" />
+  <path d="M50,100 L150,100 M100,50 L100,150" stroke="white" stroke-width="10" />
+  <text x="100" y="45" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">兵器装备</text>
+  <text x="100" y="165" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">工程学报</text>
+</svg> 
