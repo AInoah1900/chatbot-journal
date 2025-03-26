@@ -17,3 +17,5 @@ website/.env
 eslint_report.json
 
 .wrangler
+.next/
+.env.local

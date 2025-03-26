@@ -51,8 +51,26 @@ const mockSearchResults = [
   }
 ];
 
-export default function SearchPage({ searchParams }: { searchParams: { q?: string, author?: string, title?: string, keywords?: string, yearFrom?: string, yearTo?: string } }) {
-  const { q: searchQuery, author, title, keywords, yearFrom, yearTo } = searchParams;
+export default async function SearchPage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ 
+    q?: string,
+    author?: string, 
+    title?: string, 
+    keywords?: string, 
+    yearFrom?: string, 
+    yearTo?: string 
+  }> 
+}) {
+  const { 
+    q: searchQuery, 
+    author, 
+    title, 
+    keywords, 
+    yearFrom, 
+    yearTo 
+  } = await searchParams;
   
   // 在实际应用中，这里会根据所有搜索参数调用API获取搜索结果
   // 这里简单模拟一下搜索结果

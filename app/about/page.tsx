@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -53,7 +52,7 @@ export default function AboutPage() {
             <li>中国学术期刊综合评价数据库来源期刊</li>
             <li>中国科学引文数据库来源期刊</li>
             <li>中国期刊全文数据库(CJFD)全文收录期刊</li>
-            <li>"万方数据-数字化期刊群"全文上网期刊</li>
+            <li>&quot;万方数据-数字化期刊群&quot;全文上网期刊</li>
             <li>中文科技期刊数据库全文收录期刊</li>
           </ul>
         </div>

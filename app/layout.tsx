@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import Image from "next/image";
 import JournalLogo from "./components/JournalLogo";
 import SearchBox from "./components/SearchBox";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import ClientChatIconWrapper from "./components/ClientChatIconWrapper";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${geistMono.variable} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <header className="navbar">
           <div className="container mx-auto py-4">
             <div className="flex flex-col md:flex-row justify-between items-center">

@@ -18,9 +18,29 @@
 - [TailwindCSS 4](https://tailwindcss.com/) - CSS框架
 - [DeepSeek API](https://platform.deepseek.com/) - 智能聊天功能
 
-## 开发指南
+## Next.js 15 兼容性说明
 
-### 环境变量配置
+本项目使用Next.js 15.2.4版本，有以下重要变更需要注意：
+
+1. **页面参数变更**：在Next.js 15中，`searchParams`和`params`属性现在是Promise类型，必须使用async/await或React的use函数来访问值。例如：
+
+```tsx
+export default async function Page({
+  searchParams
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const { filter } = await searchParams;
+  // 使用filter值...
+}
+```
+
+2. **ESLint规则**：请确保遵循项目的ESLint规则，特别是：
+   - 不要使用未声明的变量
+   - 在JSX中使用`&quot;`或`&#34;`转义引号
+   - 避免使用`any`类型，应指定更具体的类型
+
+## 环境变量配置
 
 在项目根目录创建`.env.local`文件，并配置以下环境变量：
 
@@ -29,6 +49,8 @@ NEXT_PUBLIC_DEEPSEEK_API_KEY=你的DeepSeek API密钥
 ```
 
 如果不配置API密钥，聊天助手将使用模拟响应。
+
+## 开发指南
 
 ### 安装依赖
 
@@ -77,7 +99,9 @@ npm run start
 
 要启用完整的聊天助手功能，需要在`.env.local`文件中配置有效的DeepSeek API密钥。如未配置，将使用预设的模拟响应。
 
-## 项目规划
+## 项目规划与维护记录
+
+### 项目规划
 
 - 第一阶段：完成网站基础框架和首页设计
 - 第二阶段：实现期刊介绍、编委会等静态页面
@@ -85,9 +109,54 @@ npm run start
 - 第四阶段：优化用户体验和性能
 - 第五阶段：集成DeepSeek API智能聊天助手
 
+### 维护记录
+
+- **2023-03-26**: 修复Next.js 15兼容性问题
+  - 更新`app/search/page.tsx`以支持Promise版本的searchParams
+  - 移除未使用的Image导入（layout.tsx, page.tsx, about/page.tsx）
+  - 修复HTML转义引号问题
+  - 修复TypeScript any类型问题
+
 ## 项目维护
 
 如有任何问题或建议，请提交issue或联系项目管理员。
+
+## 故障排除
+
+### 端口冲突问题
+
+如果你在启动应用时遇到以下错误：
+
+```
+Error: listen EADDRINUSE: address already in use :::3000
+```
+
+这表示3000端口已被占用，解决方法有：
+
+1. **查找并关闭占用端口的进程**:
+   ```bash
+   # macOS/Linux
+   lsof -i :3000
+   # 找到PID后终止进程
+   kill -9 <PID>
+   
+   # Windows
+   netstat -ano | findstr :3000
+   # 找到PID后终止进程
+   taskkill /F /PID <PID>
+   ```
+
+2. **使用不同的端口**:
+   ```bash
+   # 开发环境
+   PORT=3001 npm run dev
+   
+   # 生产环境
+   PORT=3001 npm run start
+   ```
+
+3. **确保正确关闭服务器**:
+   开发时，请使用`Ctrl+C`完全关闭服务器，而不是直接关闭终端窗口。
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
